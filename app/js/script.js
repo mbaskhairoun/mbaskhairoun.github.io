@@ -30,6 +30,7 @@ document.addEventListener('keydown', (e) => {
       //console.log('is backspace');
       deleteFromLetters();
     } else if (e.key == 'Enter' && currentGuess.dataset.letters.length == 5) {
+      console.log('currentGuess',currentGuess.dataset.letters)
       submitGuess();
     }
   }
