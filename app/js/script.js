@@ -27,10 +27,10 @@ document.addEventListener('keydown', (e) => {
       //console.log('is letter');
       updateLetters(keypress);
     } else if (e.key == 'Backspace' && currentGuess.dataset.letters != '') {
-      //console.log('is backspace');
+      console.log('is backspace');
       deleteFromLetters();
     } else if (e.key == 'Enter' && currentGuess.dataset.letters.length == 5) {
-      console.log('currentGuess',currentGuess.dataset.letters);
+      console.log('is backspace');
       submitGuess();
     }
   }
