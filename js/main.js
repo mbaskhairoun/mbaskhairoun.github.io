@@ -1,17 +1,19 @@
+console.log('HELLO WORLD');
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
-  getNewWord();
+
 
   let guessedWords = [[]];
   let availableSpace = 1;
 
-  let word;
+  let word = getNewWord();
+  console.log('HELLO WORLD');
   let guessedWordCount = 0;
 
   const keys = document.querySelectorAll(".keyboard-row button");
 
   function getNewWord() {
-    word="hello";
+    return "hello";
   }
 
   function getCurrentWordArr() {
@@ -56,12 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const currentWord = currentWordArr.join("");
+    console.log('curr',currentWord);
 
     fetch(`https://wordsapiv1.p.rapidapi.com/words/${currentWord}`, {
       method: "GET",
       headers: {
         "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-        "x-rapidapi-key": "61c5e3986dmsh20c1bee95c2230dp18d1efjsn4668bbcfc1b3",
+        "x-rapidapi-key": "01048682cemsh59a84ec612fdd4ep1e35bdjsn2867eca301e0",
       },
     })
       .then((res) => {
