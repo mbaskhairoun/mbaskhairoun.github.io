@@ -1,5 +1,22 @@
-console.log('HELLO WORLD');
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  if(localStorage.getItem("wordleFirst")!="1"){ //see if user is first time user, if so, go through tutorial.
+    var wordleID="";
+    wordleID=prompt("Please Enter Your ID code provided by Baskha: ");
+    localStorage.setItem('wordleID', wordleID);
+    document.getElementById('welcome').innerHTML="WELCOME "+wordleID+"!!";
+    localStorage.setItem('wordleFirst', "1");
+  }
+  else{ //else display user info and dont display Tutorial
+    wordleID=localStorage.getItem("wordleID");
+    document.getElementById('welcome').innerHTML="WELCOME "+wordleID+"!!";
+  }
+  alert("welcome "+ wordleID);
   createSquares();
 
 
@@ -7,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let availableSpace = 1;
 
   let word = getNewWord();
-  console.log('HELLO WORLD');
   let guessedWordCount = 0;
 
   const keys = document.querySelectorAll(".keyboard-row button");
@@ -58,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const currentWord = currentWordArr.join("");
-    console.log('curr',currentWord);
 
     fetch(`https://wordsapiv1.p.rapidapi.com/words/${currentWord}`, {
       method: "GET",
