@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saints and Hookers Wordle</title>
+
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="module">
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
+      import { getDatabase, ref, set, child, push, get, onValue } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDYOYtvHPEy2i_1bkVaGOppUP67mTby_ME",
+        authDomain: "wordle-d113f.firebaseapp.com",
+        databaseURL: "https://wordle-d113f-default-rtdb.firebaseio.com/",
+        projectId: "wordle-d113f",
+        storageBucket: "wordle-d113f.appspot.com",
+        messagingSenderId: "646894776547",
+        appId: "1:646894776547:web:b5f873a9486f364f0ed5d6",
+        measurementId: "G-1TM9PSCG25"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      // Get a reference to the database service
+      const database = getDatabase(app);
+
+      var codes=['eizq4', 'f56io', 'yqm72', 'lslhu', 'lq6sc', 'ntsio', '8x6pf', 'ur3t4', 'tlwym', '901g6', '1h6u8', 'm3l7n', 'k6x1i', '9l6x8', 'eg60y', 'mpcip', 'u4exc', 'r6dxw', 'w3vm8', 'vvmfu', '6z199', 'm75x3'];
+      let data=[];
+      for (let i =8;i<9;i++){
+        var wordleID=codes[i];
+        wordleID=wordleID.concat("/");
+        alert(wordleID);
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, wordleID)).then((snapshot) => {
+            var wData = snapshot.val();
+            data.push(wData.name);
+    })
+    alert(data[0]);
+  }
+
+
+
+
+  </script>
+
+
+
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+
+    <div id="container">
+
+        <header>
+
+          <h1 id="welcome">Leader Board</h1>
+
+        </header>
+
+        <a id= "level" href="index.html">Back to Game</a>
+        <div id="spacer"></div>
+
+
+        <table class="darkTable">
+    <thead>
+    <tr>
+    <th>Name</th>
+    <th>Score</th>
+    <th>Level</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>cell1_1</td>
+    <td>cell2_1</td>
+    <td>cell3_1</td>
+    </tr>
+
+
+    </tbody>
+    </table>
+
+
+      </div>
+
+
+  </body>
+  </html>

@@ -11,6 +11,7 @@
 
   <script type="module">
   // Import the functions you need from the SDKs you need
+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
   import { getDatabase, ref, set, child, push, get, onValue } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
@@ -44,11 +45,12 @@
       wordleID=prompt("Please Enter Your ID code provided by Baskha: ");
       localStorage.setItem('wordleID', wordleID);
       localStorage.setItem('wordleFirst', "1");
+      const dbRef = ref(getDatabase());
       get(child(dbRef, wordleID+'/name')).then((snapshot) => {
         if (snapshot.exists()) {
           var wName = snapshot.val();
           //localStorage.setItem('wName',wName);
-          document.getElementById('welcome').innerHTML="WELCOME "+wName+"!!";
+          document.getElementById('welcome').innerHTML=wName;
         } else {
           console.log("No data available");
         }
@@ -64,7 +66,7 @@
         if (snapshot.exists()) {
           var wName = snapshot.val();
           //localStorage.setItem('wName',wName);
-          document.getElementById('welcome').innerHTML="WELCOME "+wName+"!!";
+          document.getElementById('welcome').innerHTML=wName;
         } else {
           console.log("No data available");
         }
@@ -72,9 +74,12 @@
         console.error(error);
       });
 
-
-
     }
+    function storescores(){
+      localStorage.setItem('wshDatabase',database);
+    }
+
+    storescores();
     createSquares();
     let guessedWords = [[]];
     let guessedWordCount = 0;
@@ -360,7 +365,9 @@
             var wIndex = snapshot.val();
             localStorage.setItem("wIndex",wIndex);
             localStorage.test=wIndex;
-            alert("You are on level: "+ wIndex);
+            document.getElementById("level").innerHTML=("You are on level: "+ wIndex);
+
+            //alert("You are on level: "+ wIndex);
           } else {
             console.log("No data available");
           }
@@ -586,9 +593,10 @@
         <header>
 
           <h1 id="welcome">WORDLE</h1>
-          <h1 id="data"></h1>
+
         </header>
-        <h1 id="level">WORDLE</h1>
+
+        <a id= "level" href="score.html">About Us</a>
 
         <div id="board-container">
           <div id="board"></div>
